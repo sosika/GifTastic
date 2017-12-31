@@ -6,4 +6,13 @@ button {
 	margin: 5px;
 }
 
+#gifs-appear-here div {
+	float: left;
+	position: relative;
+	display: inline;
+	overflow: hidden;
+	margin-right: 5px;
+	margin-top: 20px;
+}
+
 

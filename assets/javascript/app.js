@@ -49,13 +49,12 @@ function displayAnimalInfo() {
           url: queryURL,
           method: "GET"
         }).done(function(response) {
-        		console.log(animal);
-        		console.log(queryURL);
-        		console.log(response);
 
         		var results = response.data;
           
 	          	for (var i = 0; i < results.length; i++) {
+
+	          		if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
 
 	            	var animalDiv = $("<div>");
 
@@ -63,12 +62,13 @@ function displayAnimalInfo() {
 
 	            	var animalImage = $("<img>");
 	            
-	            	animalImage.attr("src", results[i].images.fixed_height_small_still.url);
+	            	animalImage.attr("src", results[i].images.fixed_height_still.url);
 	            	animalDiv.append(p);
 	            	animalDiv.append(animalImage);
 	            	// console.log(results[i].images.fixed_height_small_still.url);
 
 	            	$("#gifs-appear-here").prepend(animalDiv);
+	            	} // End rating condition
         		} // End for loop
 //-------------------------------------------------------------
 //	Change still state
@@ -77,24 +77,18 @@ function displayAnimalInfo() {
         		$("img").on("click", function() {
 			      // alert("you click image");
 			      var imgURL = $(this).attr('src');
-			      console.log(imgURL);
+			      
 			      if (imgURL.substr(-5, 1) === "s") {
-			      	console.log("this is still!");
 			      	var newImgURL = imgURL.replace("_s", "");
-			      	console.log("new not still url : " + newImgURL);
 			      	$(this).attr("src", newImgURL);
 			      }
 			      else {
-			      	console.log("this is not still!");
 			      	var newImgURL = imgURL.insert(-4,'_s');
 			      	$(this).attr("src", newImgURL);
-			      	console.log("new still url : " + newImgURL);
 			      }
         		}); // End of img click function
         	}); // End response
     }; // End displayAnimalInfo function
-
-
 
 //-------------------------------------------------------------
 //	Take animal input
