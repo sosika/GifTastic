@@ -104,6 +104,8 @@ $("#addAnimal").on("click", function(event) {
 
         // Calling renderButtons which handles the processing of our movie array
         renderButtons();
+
+        $("#animal-input").val("");
 });
 
 //-------------------------------------------------------------
